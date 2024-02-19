@@ -1,5 +1,5 @@
-# CLIP-ViL on Vision-and-Language Navigation
-
+# Navigation As Wish
+<!-- 
 In our paper "[How Much Can CLIP Benefit Vision-and-Language Tasks?](https://arxiv.org/abs/2107.06383)", we show the improvement of CLIP features
 over the traditional resnet features on the vision-and-language navigation tasks ([R2R](https://bringmeaspoon.org/) and [RxR](https://ai.google.com/research/rxr/)).
 On RxR, we got **5%** improvements with the nDTW metric (the main metric for RxR).
@@ -228,4 +228,4 @@ please use the following BibTeX entry.
   journal={arXiv preprint arXiv:2107.06383},
   year={2021}
 }
-```
+``` -->
