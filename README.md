@@ -3,10 +3,10 @@
 <h1>Navigation as Attackers Wish? Towards Building Robust Embodied Agents under Federated Learning</h1>
 
 <div>
-    <a href='https://StylesZhang.github.io/' target='_blank'>Yunchao Zhang</a>;
-    <a href='https://scholar.google.com/citations?user=5lFDxsMAAAAJ&hl=en&oi=ao' target='_blank'>Zonglin Di</a>;
-    <a href='https://kevinz-01.github.io/' target='_blank'>Kaiwen Zhou</a>;
-    <a href='https://cihangxie.github.io/' target='_blank'>Cihang Xie</a>;
+    <a href='https://StylesZhang.github.io/' target='_blank'>Yunchao Zhang</a>,
+    <a href='https://scholar.google.com/citations?user=5lFDxsMAAAAJ&hl=en&oi=ao' target='_blank'>Zonglin Di</a>,
+    <a href='https://kevinz-01.github.io/' target='_blank'>Kaiwen Zhou</a>,
+    <a href='https://cihangxie.github.io/' target='_blank'>Cihang Xie</a>,
     <a href='https://eric-xw.github.io/' target='_blank'>Xin Eric Wang</a>;
 </div>
 <div>
@@ -16,21 +16,19 @@
 <h3><strong>Accepted to the Main Conference of <a href='https://2024.naacl.org/' target='_blank'>NAACL 2024</a></strong></h3>
 
 <h3 align="center">
-  <a href="https://arxiv.org/abs/2203.14936" target='_blank'>Paper|</a>
-  <a href="https://arxiv.org/abs/2203.14936" target='_blank'>Project Page</a>
+  <a href="https://arxiv.org/abs/2203.14936" target='_blank'>Paper |</a>
+  <a href="https://styleszhang.github.io/pba/" target='_blank'>Project Page</a>
 </h3>
 </div>
 <!--## Summary-->
 <!--In this paper, we study an important and unique security problem in federated embodied AI -- whether the backdoor attack can manipulate the agent without influencing the performance and how to defend against the attack. We introduce a targeted backdoor attack NAW that successfully implants a backdoor into the agent and propose a promote-based defense framework PBA to defend against it.-->
 
-## Architecture
-![](architecture.png)
 
 We release the reproducible code here.
 
 ## Environment Installation
 
-Python requirements: Need python3.6
+Python version: Need python3.8
 ```
 pip install -r python_requirements.txt
 ```
@@ -55,7 +53,7 @@ Please download the CLIP-ViT features for CLIP-ViL models with this link:
 wget https://nlp.cs.unc.edu/data/vln_clip/features/CLIP-ViT-B-32-views.tsv -P img_features
 ```
 
-## Training RxR
+## Training and Testing On RxR
 
 ### Data
 Please download the pre-processed data with link:
@@ -64,45 +62,22 @@ wget https://nlp.cs.unc.edu/data/vln_clip/RxR.zip -P tasks
 unzip tasks/RxR.zip -d tasks/
 ```
 
-### Training the Fed CLIP-ViL agent
-For training Fed CLIP-ViL agent on RxR dataset, please run
+### Testing NAW and PBA
+For testing the performance of PBA on RxR dataset with model FedEnvDrop, please run
 
 ```
-    name=agent_rxr_en_clip_vit_fedavg_new_glr2
-    flag="--attn soft --train listener
-      --featdropout 0.3
-      --angleFeatSize 128
-      --language en
-      --maxInput 160
-      --features img_features/CLIP-ViT-B-32-views.tsv
-      --feature_size 512
-      --feedback sample
-      --mlWeight 0.4
-      --subout max --dropout 0.5 --optim rms --lr 1e-4 --iters 400000 --maxAction 35
-      --if_fed True
-      --fed_alg fedavg
-      --global_lr 2
-      --comm_round 910
-      --local_epoches 5
-      --n_parties 60
-      "
-
-mkdir -p snap/$name
-CUDA_VISIBLE_DEVICES=2 python3 rxr_src/train.py $flag --name $name
+    bash run/agent_envdrop_attack.bash
 ```
+by changing the defense method, please change the param  `defense_method` from `PBA` to `mean`.
 
-Or you could simply run the script with the same content as above(we will use this in the following):
+For testing the performance of PBA on RxR dataset with model FedCLIP-ViL, please run
 
 ```
-    bash run/agent_rxr_clip_vit_en_fedavg.bash
+    bash run/agent_clip_vit_fedavg_attack.bash
 ```
     
-### Training Fed Envdrop agent
-```
-    bash agent_rxr_resnet152_fedavg.bash
-```
 
-## Training R2R
+## Training and Testing on R2R
 
 ### Download the Data
 Download Room-to-Room navigation data:
@@ -110,54 +85,23 @@ Download Room-to-Room navigation data:
 bash ./tasks/R2R/data/download.sh
 ```
 
-### Train the Fed CLIP-ViL Agent
-Run the script:
+### Testing NAW and PBA
+For testing the performance of PBA on RxR dataset with model FedEnvDrop, please run
+
 ```
-bash run/agent_clip_vit_fedavg.bash
+    bash run/agent_envdrop_attack.bash
 ```
-It will train the agent and save the snapshot under snap/agent/. Notice that we tried global learning rate schedular, which may help the training. Unseen success rate would be around 53%.
+by changing the defense method, please change the param  `defense_method` from `PBA` to `mean`.
 
-### Augmented training
-- Train the speaker
-  ```
-  bash run/speaker_clip_vit_fedavg.bash
-  ```
-  It will train the speaker and save the snapshot under snap/speaker/
+For testing the performance of PBA on RxR dataset with model FedCLIP-ViL, please run
 
-- Augmented training:
-
-  After pre-training the speaker and the agnet,
-  ```
-  bash run/bt_envdrop_clip_vit_fedavg.bash
-  ```
-  It will load the pre-trained agent and train on augmented data with environmental dropout.
-  
-### Training the Fed Envdrop agent
-- Agent
-  ```shell
-  bash run/agent_fedavg.bash
-  ```
-- Fed Speaker + Aug training
-  ```shell
-  bash run/speaker_fedavg.bash
-  bash run/bt_envdrop_fedavg.bash
-  ```
-
-### Fed CLIP-ViL pre-exploration
-After train the CLIP-ViL speaker, run
-```shell
-  bash run/pre_explore_clip_vit_fedavg.bash
+```
+    bash run/agent_rxr_clip_vit_en_fedavg_attack.bash
 ```
 
-### Fed Envdrop pre-exploration
-After train the resnet speaker, run
-```shell
-  bash run/pre_explore_fedavg.bash
-  ```
 
 ## Related Links
-- CLIP-ViL: [paper](https://arxiv.org/abs/2107.06383), [code](https://github.com/clip-vil/CLIP-ViL/tree/master/CLIP-ViL-VLN)
-- EnvDrop: [paper](https://arxiv.org/abs/1904.04195), [code](https://github.com/airsplay/R2R-EnvDrop)
+- FedVLN: [paper](https://arxiv.org/abs/2203.14936), [code](https://github.com/eric-ai-lab/FedVLN)
 - R2R Dataset: [paper](https://arxiv.org/pdf/1711.07280.pdf), [code](https://github.com/peteanderson80/Matterport3DSimulator)
 - RxR Dataset: [paper](https://arxiv.org/abs/2010.07954), [code](https://github.com/google-research-datasets/RxR)
 
