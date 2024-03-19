@@ -7,7 +7,7 @@
     <a href='https://scholar.google.com/citations?user=5lFDxsMAAAAJ&hl=en&oi=ao' target='_blank'>Zonglin Di</a>,
     <a href='https://kevinz-01.github.io/' target='_blank'>Kaiwen Zhou</a>,
     <a href='https://cihangxie.github.io/' target='_blank'>Cihang Xie</a>,
-    <a href='https://eric-xw.github.io/' target='_blank'>Xin Eric Wang</a>;
+    <a href='https://eric-xw.github.io/' target='_blank'>Xin Eric Wang</a>
 </div>
 <div>
     University of California, Santa Cruz, USA&emsp;
@@ -66,16 +66,16 @@ unzip tasks/RxR.zip -d tasks/
 For testing the performance of PBA on RxR dataset with model FedEnvDrop, please run
 
 ```
-    bash run/agent_envdrop_attack.bash
+bash run/agent_rxr_envdrop_attack.bash
 ```
-by changing the defense method, please change the param  `defense_method` from `PBA` to `mean`.
 
 For testing the performance of PBA on RxR dataset with model FedCLIP-ViL, please run
 
 ```
-    bash run/agent_clip_vit_fedavg_attack.bash
+bash run/agent_rxr_clip_vit_attack.bash
 ```
-    
+If you want to simply test NAW without any defense, please change the param  `defense_method` in the bash file from `PBA` to `mean`.    
+
 
 ## Training and Testing on R2R
 
@@ -86,19 +86,20 @@ bash ./tasks/R2R/data/download.sh
 ```
 
 ### Testing NAW and PBA
-For testing the performance of PBA on RxR dataset with model FedEnvDrop, please run
+For testing the performance of PBA on R2R dataset with model FedEnvDrop, please run
 
 ```
-    bash run/agent_envdrop_attack.bash
-```
-by changing the defense method, please change the param  `defense_method` from `PBA` to `mean`.
-
-For testing the performance of PBA on RxR dataset with model FedCLIP-ViL, please run
-
-```
-    bash run/agent_rxr_clip_vit_en_fedavg_attack.bash
+bash run/agent_envdrop_attack.bash
 ```
 
+
+For testing the performance of PBA on R2R dataset with model FedCLIP-ViL, please run
+
+```
+bash run/agent_clip_vit_attack.bash
+```
+
+If you want to simply test NAW without any defense, please change the param  `defense_method` in the bash file from `PBA` to `mean`.
 
 ## Related Links
 - FedVLN: [paper](https://arxiv.org/abs/2203.14936), [code](https://github.com/eric-ai-lab/FedVLN)
