@@ -113,8 +113,7 @@ please use the following BibTeX entry.
 
 ```shell 
 @inproceedings{zhang-etal-2024-NAW,
-    title = "Navigation as Attackers Wish? Towards Building Robust Embodied Agents
-under Federated Learning",
+    title = "Navigation as Attackers Wish? Towards Building Robust Embodied Agents under Federated Learning",
     author = "Zhang, Yunchao and Di, Zonglin and Zhou, Kaiwen and Xie, Cihang and Wang, Eric Xin",
     booktitle = "Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)",
     year = "2024",
