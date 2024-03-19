@@ -112,10 +112,15 @@ please use the following BibTeX entry.
 
 
 ```shell 
-@article{zhang2022navigation,
-  title={Navigation as Attackers Wish? Towards Building Byzantine-Robust Embodied Agents under Federated Learning},
-  author={Zhang, Yunchao and Di, Zonglin and Zhou, Kaiwen and Xie, Cihang and Wang, Xin Eric},
-  journal={arXiv preprint arXiv:2211.14769},
-  year={2022}
+@inproceedings{zhang-etal-2024-NAW,
+    title = "Navigation as Attackers Wish? Towards Building Robust Embodied Agents
+under Federated Learning",
+    author = "Zhang, Yunchao  and
+      Di, Zonglin  and
+      Zhou, Kaiwen  and
+      Xie, Cihang  and
+      Wang, Eric Xin",
+    booktitle = "Proceedings of the 62st Annual Meeting of the Association for Computational Linguistics (ACL)",
+    year = "2024",
 }
 ```
