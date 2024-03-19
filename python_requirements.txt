@@ -5,3 +5,4 @@ networkX
 tensorboardX
 tqdm
 stanza
+wandb
