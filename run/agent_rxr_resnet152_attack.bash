@@ -15,7 +15,20 @@ flag="--attn soft --train listener
       --global_lr 2
       --comm_round 1400
       --local_epoches 3
-      --n_parties 60"
+      --n_parties 60
+      
+      --attack_type 3
+      --backdoor_train_rate 0.3
+      --backdoor_val_rate 0.1
+      --scaled_factor 0.1
+      --malicious_fraction 0.1
+      --defense_method PBA
+      --do_mask True
+      --n_parties 60
+      --minus 1
+      --no_train True
+      --malicious_rate 1
+      "
 
 mkdir -p snap/$name
 CUDA_VISIBLE_DEVICES=2 python3 rxr_src/train.py $flag --name $name
