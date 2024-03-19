@@ -120,7 +120,7 @@ under Federated Learning",
       Zhou, Kaiwen  and
       Xie, Cihang  and
       Wang, Eric Xin",
-    booktitle = "Proceedings of the 62st Annual Meeting of the Association for Computational Linguistics (ACL)",
+    booktitle = "Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)",
     year = "2024",
 }
 ```
