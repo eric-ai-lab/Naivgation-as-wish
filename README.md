@@ -28,7 +28,7 @@ We release the reproducible code here.
 
 ## Environment Installation
 
-Python version: Need python3.8
+Python version: Need python 3.8
 ```
 pip install -r python_requirements.txt
 ```
